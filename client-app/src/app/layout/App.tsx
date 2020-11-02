@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import "semantic-ui-css/semantic.min.css";
-import { Button, Container } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import axios from "axios";
 import { IActivity } from "../models/activity";
 import { NavBar } from "../../features/nav/NavBar";
@@ -22,26 +22,27 @@ const App = () => {
     });
   }, []);
 
-  // const handleSetActivity = () => {
-  //   axios.get<IActivity[]>("http://localhost:5000/api/activities").then(response => {
-  //        setActivities(response.data);
-  //   });
-  // }
+
+  const handleOpenCreateForm = () => {
+    setSelectedActivity(null);
+    setEditMode(true);
+  }
+
 
 
   return (
     <Fragment>
      
-      <NavBar />
+      <NavBar openCreateForm = { handleOpenCreateForm }/>
      
       <Container style={{marginTop: '7em'}}>
-         {/* <Button onClick={handleSetActivity}>TEst buton</Button> */}
         <ActivityDashboard 
         activities = { activities } 
         selectActivity = { handleSelectActivity }
         selectedActivity = { selectedActivity }
         editMode = { editMode }
         setEditMode = { setEditMode }
+        setSelectedActivity = { setSelectedActivity }
         />
       </Container>
     </Fragment>
