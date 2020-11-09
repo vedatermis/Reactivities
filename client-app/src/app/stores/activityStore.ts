@@ -10,8 +10,9 @@ class ActivityStore {
     @action loadActivities = () => {
         this.loadingInitial = true;
 
-        agent.Activities.list().then(activities => {          
-            activities.forEach(activity => {
+        agent.Activities.list()
+        .then(activities => {          
+            activities.forEach((activity) => {
               activity.date = activity.date.split('.')[0];
               this.activities.push(activity);
             })

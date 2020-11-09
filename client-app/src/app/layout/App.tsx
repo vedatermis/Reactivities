@@ -25,6 +25,7 @@ const App = () => {
 
   useEffect(() => {
     activityStore.loadActivities();
+    console.log(activityStore.activities);
   }, [activityStore]);
 
   if (activityStore.loadingInitial) return <LoadingComponent content = "Loading activities..." />
