@@ -1,5 +1,3 @@
-import { StringifyOptions } from "querystring";
-
 export interface IActivity {
     id: string;
     title: string;
