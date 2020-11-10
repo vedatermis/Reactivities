@@ -9,7 +9,9 @@ import LoadingComponent from "./LoadingComponent";
 import ActivityStore from "../stores/activityStore";
 import { observer } from "mobx-react-lite";
 
-const App = () => {
+
+const App = observer(() => {
+  
   const activityStore = useContext(ActivityStore);
   const [activities, setActivities] = useState<IActivity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<IActivity | null>(null);
@@ -25,7 +27,6 @@ const App = () => {
 
   useEffect(() => {
     activityStore.loadActivities();
-    console.log(activityStore.activities);
   }, [activityStore]);
 
   if (activityStore.loadingInitial) return <LoadingComponent content = "Loading activities..." />
@@ -39,6 +40,7 @@ const App = () => {
     
   }
 
+  
   const handleOpenCreateForm = () => {
     setSelectedActivity(null);
     setEditMode(true);
@@ -64,7 +66,6 @@ const App = () => {
     
   }
 
-
   return (
     <Fragment>
       <NavBar openCreateForm = { handleOpenCreateForm }/>
@@ -85,6 +86,6 @@ const App = () => {
       </Container>
     </Fragment>
   );
-};
+});
 
-export default observer(App);
+export default App;
