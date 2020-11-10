@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment, SyntheticEvent, useContext } from
 import "semantic-ui-css/semantic.min.css";
 import { Container } from "semantic-ui-react";
 import { IActivity } from "../models/activity";
-import { NavBar } from "../../features/nav/NavBar";
+import NavBar  from "../../features/nav/NavBar";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 import agent from "../api/agent";
 import LoadingComponent from "./LoadingComponent";
@@ -20,10 +20,7 @@ const App = observer(() => {
   const [submitting, setSubmitting] = useState(false);
   const [target, setTarget] = useState("");
 
-  const handleSelectActivity = (id: string) => {
-    setSelectedActivity(activities.filter(a => a.id === id)[0]);
-    setEditMode(false);
-  }
+
 
   useEffect(() => {
     activityStore.loadActivities();
@@ -40,21 +37,6 @@ const App = observer(() => {
     
   }
 
-  
-  const handleOpenCreateForm = () => {
-    setSelectedActivity(null);
-    setEditMode(true);
-  }
-
-  const handleCreateActivity = (activity: IActivity) => {
-    setSubmitting(true);
-
-    agent.Activities.create(activity).then(() => {
-      setActivities([...activities, activity]);
-      setSelectedActivity(activity);
-      setEditMode(false);
-    }).then(() => setSubmitting(false));
-  }
 
   const handleEditActivity = (activity: IActivity) => {
     setSubmitting(true);
@@ -68,16 +50,11 @@ const App = observer(() => {
 
   return (
     <Fragment>
-      <NavBar openCreateForm = { handleOpenCreateForm }/>
+      <NavBar />
       <Container style={{marginTop: '7em'}}>
-        <ActivityDashboard 
-        activities = { activityStore.activities } 
-        selectActivity = { handleSelectActivity }
-        selectedActivity = { selectedActivity }
-        editMode = { editMode }
+        <ActivityDashboard      
         setEditMode = { setEditMode }
         setSelectedActivity = { setSelectedActivity }
-        createActivity = { handleCreateActivity }
         editActivity = { handleEditActivity }
         deleteActivity = { handleDeleteActivity }
         submitting = { submitting }
