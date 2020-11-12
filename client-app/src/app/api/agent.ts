@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import axios, { AxiosResponse } from "axios";
 import { IActivity } from "../models/activity";
 
