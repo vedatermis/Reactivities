@@ -1,8 +1,30 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios, { AxiosResponse } from "axios";
+import { toast } from "react-toastify";
+import { history } from "../..";
 import { IActivity } from "../models/activity";
 
+
 axios.defaults.baseURL = "http://localhost:5000/api";
+axios.interceptors.response.use(undefined, error => {
+    const { status, data, config } = error.response;
+
+    if (error.message === "Network error" && !error.response) {
+        toast.error("Network Error - Cannot reach the API");
+    }
+
+    if (status === 404) {
+        history.push("/notfound");
+    }
+
+    if (status === 400 && config.method === "get" && data.errors.hasOwnProperty("id")) {
+        history.push("/notfound");
+    }
+
+    if (status === 500) {
+        toast.error("Server error - check the terminal for more info!");
+    }
+});
 
 const responseBody = (response: AxiosResponse) => response.data;
 
