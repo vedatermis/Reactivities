@@ -1,11 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>2aaca31b-7cfd-490d-9d5b-333ed9768899</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.9" />
   </ItemGroup>
 </Project>
