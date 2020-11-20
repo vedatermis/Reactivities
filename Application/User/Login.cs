@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Application.Errors;
 using Domain;
 using FluentValidation;
-using Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using IJwtGenerator = Application.Interfaces.IJwtGenerator;
 
 
 namespace Application.User

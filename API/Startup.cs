@@ -1,6 +1,7 @@
 using System.Text;
 using API.Middleware;
 using Application.Activities;
+using Application.Interfaces;
 using Domain;
 using FluentValidation.AspNetCore;
 using Infrastructure;
@@ -63,6 +64,7 @@ namespace API
             identityBuilder.AddSignInManager<SignInManager<AppUser>>();
 
             services.AddScoped<IJwtGenerator, JwtGenerator>();
+            services.AddScoped<IUserAccessor, UserAccessor>();
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
