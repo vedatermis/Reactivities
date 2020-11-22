@@ -1,8 +1,10 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
+import { PrimaryExpression } from "typescript";
 import { history } from "../..";
 import { IActivity } from "../models/activity";
+import { IUser, IUserFormValues } from "../models/user";
 
 
 axios.defaults.baseURL = "http://localhost:5000/api";
@@ -47,4 +49,10 @@ const Activities = {
     delete: (id: string) => requests.del(`/activities/${id}`)
 }
 
-export default { Activities };
+const User = {
+    current: (): Promise<IUser> => requests.get("user"),
+    login: (user: IUserFormValues): Promise<IUser> => requests.post(`/user/login`, user),
+    register: (user: IUserFormValues): Promise<IUser> => requests.post(`/user/register`, user)
+}
+
+export default { Activities, User };
