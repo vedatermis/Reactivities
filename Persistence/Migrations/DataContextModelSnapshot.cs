@@ -266,7 +266,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.UserActivity", b =>
                 {
-                    b.HasOne("Domain.Activity", "Acitivity")
+                    b.HasOne("Domain.Activity", "Activity")
                         .WithMany("UserActivities")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
