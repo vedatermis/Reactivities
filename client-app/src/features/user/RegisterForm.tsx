@@ -38,7 +38,7 @@ const RegisterForm = () => {
                     submitError && !dirtySinceLastSubmit && <ErrorMessage error = { submitError } />
                 }
     
-                <Button disabled = { invalid && !dirtySinceLastSubmit || pristine } loading = {submitting} color = "teal" positive content = "Register" fluid />
+                <Button disabled = { (invalid && !dirtySinceLastSubmit) || pristine } loading = {submitting} color = "teal" positive content = "Register" fluid />
                 {/* <pre>
                     {JSON.stringify(form.getState(), null, 2)}
                 </pre> */}

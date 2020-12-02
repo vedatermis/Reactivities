@@ -34,7 +34,7 @@ const LoginForm = () => {
                     submitError && !dirtySinceLastSubmit && <ErrorMessage error = { submitError } text = "Invalid username or password"/>
                 }
     
-                <Button disabled = { invalid && !dirtySinceLastSubmit || pristine } loading = {submitting} color = "teal" positive content = "Login" fluid />
+                <Button disabled = { (invalid && !dirtySinceLastSubmit) || pristine } loading = {submitting} color = "teal" positive content = "Login" fluid />
                 {/* <pre>
                     {JSON.stringify(form.getState(), null, 2)}
                 </pre> */}
