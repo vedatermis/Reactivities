@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite'
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { Segment, List, Item, Label, Image } from 'semantic-ui-react'
@@ -30,7 +31,7 @@ const ActivityDetailedSidebar: React.FC<IProps> = ({attendees}) => {
             {
               attendees.map(attendee => (
                 <Item key = { attendee.username } style={{ position: 'relative' }}>
-                {isHost && <Label
+                {attendee.isHost && <Label
                   style={{ position: 'absolute' }}
                   color='orange'
                   ribbon='right'
@@ -53,4 +54,4 @@ const ActivityDetailedSidebar: React.FC<IProps> = ({attendees}) => {
     )
 }
 
-export default ActivityDetailedSidebar
+export default observer(ActivityDetailedSidebar);
